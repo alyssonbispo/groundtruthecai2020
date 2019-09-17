@@ -1,0 +1,708 @@
+vizinhos = 5 
+[1] "429;;16"
+[1] "0.326;0.412;0.269;0.704"
+[1] "1577;;91"
+[1] "0.157;0.19;0.133;0.9"
+[1] "5181;;292"
+[1] "0.301;0.223;0.466;0.879"
+[1] "3710;;241"
+[1] "0.128;0.25;0.086;0.932"
+[1] "6914;;373"
+[1] "0.167;0.25;0.125;0.895"
+[1] "5889;;240"
+[1] "0.141;0.102;0.229;0.92"
+[1] "2093;;51"
+[1] "0.118;0.12;0.115;0.932"
+[1] "1358;;49"
+[1] "0.232;0.178;0.333;0.84"
+[1] "3071;;170"
+[1] "0.232;0.19;0.297;0.859"
+[1] "5605;;398"
+[1] "0.272;0.285;0.261;0.884"
+[1] "1611;;81"
+[1] "0.071;0.087;0.061;0.874"
+
+
+vizinhos = 10 
+
+[1] "833;;37"
+[1] "0.312;0.294;0.333;0.776"
+[1] "3056;;171"
+[1] "0.28;0.333;0.241;0.916"
+[1] "9588;;525"
+[1] "0.28;0.19;0.53;0.885"
+[1] "7035;;432"
+[1] "0.07;0.1;0.054;0.947"
+[1] "12622;;643"
+[1] "0.117;0.22;0.079;0.86"
+[1] "10958;;481"
+[1] "0.176;0.12;0.325;0.927"
+[1] "3960;;95"
+[1] "0.114;0.08;0.2;0.953"
+[1] "2634;;115"
+[1] "0.197;0.133;0.375;0.852"
+[1] "5897;;304"
+[1] "0.192;0.14;0.304;0.868"
+[1] "10633;;729"
+[1] "0.316;0.325;0.308;0.892"
+[1] "3188;;167"
+[1] "0.098;0.13;0.079;0.867"
+
+
+vizinhos = 20
+
+[1] "1641;;76"
+[1] "0.222;0.176;0.3;0.786"
+[1] "5884;;337"
+[1] "0.109;0.143;0.088;0.886"
+[1] "17120;;966"
+[1] "0.269;0.239;0.308;0.847"
+[1] "12936;;791"
+[1] "0.105;0.15;0.081;0.949"
+[1] "22246;;1063"
+[1] "0.118;0.21;0.082;0.868"
+|====================================================================================================================================| 100%    1 MB
+[1] "19677;;887"
+[1] "0.174;0.12;0.317;0.927"
+[1] "7302;;189"
+[1] "0;0;0;0.953"
+[1] "5059;;270"
+[1] "0.109;0.067;0.3;0.852"
+|====================================================================================================================================| 100%    1 MB
+[1] "11089;;568"
+[1] "0.25;0.2;0.333;0.866"
+[1] "19316;;1279"
+[1] "0.296;0.293;0.3;0.894"
+[1] "6105;;331"
+[1] "0.085;0.087;0.083;0.896"
+
+
+vizinhos = 50
+
+[1] "3895;;184"
+[1] "0.308;0.235;0.444;0.816"
+[1] "13574;;758"
+[1] "0.077;0.095;0.065;0.888"
+[1] "34041;;1871"
+[1] "0.278;0.245;0.321;0.851"
+[1] "27169;;1543"
+[1] "0.071;0.1;0.056;0.948"
+[1] "42010;;1954"
+[1] "0.14;0.25;0.097;0.871"
+[1] "39142;;1929"
+[1] "0.182;0.13;0.304;0.925"
+|====================================================================================================================================| 100%    1 MB
+[1] "15581;;446"
+[1] "0.114;0.08;0.2;0.953"
+[1] "11769;;676"
+[1] "0.113;0.067;0.375;0.858"
+[1] "24225;;1241"
+[1] "0.151;0.11;0.239;0.861"
+[1] "39166;;2442"
+[1] "0.313;0.309;0.317;0.896"
+[1] "13956;;720"
+[1] "0.154;0.13;0.188;0.92"
+
+
+
+
+
+
+
+
+
+COM edgeBoostFilter
+
+> path <- "C:\\Users\\alysson\\Dropbox\\Doutorado\\R\\Bases\\github\\GitHubBugDataSet\\processadas\\Noise_label\\edgeBoostFilter\\"
+> arrayTodasBasesGitHubSourceNoise <- list.files(path = path,recursive = TRUE)
+> for (i in seq(from = 1,
++               to = length(arrayTodasBasesGitHubTarget),
++               #to = 64,
++               by = 1)) {
++   base_target = list()
++   base_source = list()
++   
++   #print(paste("target: ", arrayTodasBasesGitHub[i], sep = ""))
++   start.time <- Sys.time()
++   
++   base_target <- preparaBaseComPath(pathTargert,arrayTodasBasesGitHubTarget[i])
++   #print(paste("distribution target: ", table(base_target$BugLogical), sep = ""))
++   if (is.na(table(base_target$BugLogical)[2]) || length(base_target$BugLogical)==0) {
++     #print("BASE SEM DEFEITOS")
++   } else{
++     
++     for (j in seq(
++       from = 1,
++       to = length(arrayTodasBasesGitHubSourceNoise),
++       by = 1
++     )) {
++       if (substr(arrayTodasBasesGitHubTarget[i], 0, 3) != substr(arrayTodasBasesGitHubSourceNoise[j], 0, 3)) {
++         
++           data <- preparaBaseComPath(path,arrayTodasBasesGitHubSourceNoise[j])
++          
++           base_source <- rbind(base_source, data)
++           data = list()
++         
++         
++       }
++       
++       
++       
++     }
++     
++     base_source <- getKnnFromSource(base_targetParam = base_target ,base_sourceParam = base_source ,vizinhos = 5 )
++     
++     print(paste(table(base_source$BugLogical)[1], table(base_source$BugLogical)[2], sep = ";;"))
++     print(calculaRegressaoGitHubDataset(base_source, base_target))
++     end.time <- Sys.time()
++     time.taken <- end.time - start.time
++     #print(time.taken)
++     #print("___________________________________________________________")
++     
++   }
++   
++   
++ }
+|============================================================================================================================================| 100%
+[1] "423;;19"
+[1] "0.278;0.294;0.263;0.735"
+[1] "1536;;110"
+[1] "0.258;0.381;0.195;0.893"
+|============================================================================================================================================| 100%
+[1] "5033;;327"
+[1] "0.298;0.223;0.451;0.877"
+[1] "3595;;287"
+[1] "0.095;0.2;0.062;0.924"
+[1] "6530;;458"
+[1] "0.143;0.31;0.093;0.843"
+[1] "5648;;291"
+[1] "0.231;0.185;0.308;0.921"
+[1] "2058;;58"
+[1] "0.167;0.16;0.174;0.939"
+[1] "1342;;60"
+[1] "0.366;0.289;0.5;0.864"
+[1] "3013;;195"
+[1] "0.273;0.22;0.361;0.869"
+[1] "5462;;472"
+[1] "0.318;0.398;0.265;0.869"
+[1] "1592;;104"
+[1] "0.159;0.217;0.125;0.871"
+There were 50 or more warnings (use warnings() to see the first 50)
+> for (i in seq(from = 1,
++               to = length(arrayTodasBasesGitHubTarget),
++               #to = 64,
++               by = 1)) {
++   base_target = list()
++   base_source = list()
++   
++   #print(paste("target: ", arrayTodasBasesGitHub[i], sep = ""))
++   start.time <- Sys.time()
++   
++   base_target <- preparaBaseComPath(pathTargert,arrayTodasBasesGitHubTarget[i])
++   #print(paste("distribution target: ", table(base_target$BugLogical), sep = ""))
++   if (is.na(table(base_target$BugLogical)[2]) || length(base_target$BugLogical)==0) {
++     #print("BASE SEM DEFEITOS")
++   } else{
++     
++     for (j in seq(
++       from = 1,
++       to = length(arrayTodasBasesGitHubSourceNoise),
++       by = 1
++     )) {
++       if (substr(arrayTodasBasesGitHubTarget[i], 0, 3) != substr(arrayTodasBasesGitHubSourceNoise[j], 0, 3)) {
++         
++           data <- preparaBaseComPath(path,arrayTodasBasesGitHubSourceNoise[j])
++          
++           base_source <- rbind(base_source, data)
++           data = list()
++         
++         
++       }
++       
++       
++       
++     }
++     
++     base_source <- getKnnFromSource(base_targetParam = base_target ,base_sourceParam = base_source ,vizinhos = 10 )
++     
++     print(paste(table(base_source$BugLogical)[1], table(base_source$BugLogical)[2], sep = ";;"))
++     print(calculaRegressaoGitHubDataset(base_source, base_target))
++     end.time <- Sys.time()
++     time.taken <- end.time - start.time
++     #print(time.taken)
++     #print("___________________________________________________________")
++     
++   }
++   
++   
++ }
+[1] "821;;48"
+[1] "0.333;0.235;0.571;0.837"
+[1] "2974;;204"
+[1] "0.261;0.286;0.24;0.921"
+|====================================================================================================================================| 100%    1 MB
+[1] "9197;;620"
+[1] "0.261;0.223;0.315;0.852"
+[1] "6766;;525"
+[1] "0.141;0.25;0.098;0.939"
+[1] "11738;;800"
+[1] "0.143;0.31;0.093;0.844"
+[1] "10378;;611"
+[1] "0.155;0.111;0.255;0.922"
+[1] "3859;;113"
+[1] "0.057;0.04;0.1;0.95"
+[1] "2563;;156"
+[1] "0.303;0.222;0.476;0.861"
+[1] "5721;;374"
+[1] "0.222;0.17;0.321;0.867"
+[1] "10207;;856"
+[1] "0.32;0.382;0.275;0.876"
+|============================================================================================================================================| 100%
+[1] "3100;;205"
+[1] "0.152;0.217;0.116;0.864"
+There were 50 or more warnings (use warnings() to see the first 50)
+> for (i in seq(from = 1,
++               to = length(arrayTodasBasesGitHubTarget),
++               #to = 64,
++               by = 1)) {
++   base_target = list()
++   base_source = list()
++   
++   #print(paste("target: ", arrayTodasBasesGitHub[i], sep = ""))
++   start.time <- Sys.time()
++   
++   base_target <- preparaBaseComPath(pathTargert,arrayTodasBasesGitHubTarget[i])
++   #print(paste("distribution target: ", table(base_target$BugLogical), sep = ""))
++   if (is.na(table(base_target$BugLogical)[2]) || length(base_target$BugLogical)==0) {
++     #print("BASE SEM DEFEITOS")
++   } else{
++     
++     for (j in seq(
++       from = 1,
++       to = length(arrayTodasBasesGitHubSourceNoise),
++       by = 1
++     )) {
++       if (substr(arrayTodasBasesGitHubTarget[i], 0, 3) != substr(arrayTodasBasesGitHubSourceNoise[j], 0, 3)) {
++         
++           data <- preparaBaseComPath(path,arrayTodasBasesGitHubSourceNoise[j])
++          
++           base_source <- rbind(base_source, data)
++           data = list()
++         
++         
++       }
++       
++       
++       
++     }
++     
++     base_source <- getKnnFromSource(base_targetParam = base_target ,base_sourceParam = base_source ,vizinhos = 20 )
++     
++     print(paste(table(base_source$BugLogical)[1], table(base_source$BugLogical)[2], sep = ";;"))
++     print(calculaRegressaoGitHubDataset(base_source, base_target))
++     end.time <- Sys.time()
++     time.taken <- end.time - start.time
++     #print(time.taken)
++     #print("___________________________________________________________")
++     
++   }
++   
++   
++ }
+|============================================================================================================================================| 100%
+[1] "1616;;94"
+[1] "0.357;0.294;0.455;0.816"
+[1] "5658;;417"
+[1] "0.109;0.143;0.088;0.886"
+[1] "16188;;1077"
+[1] "0.288;0.261;0.322;0.849"
+[1] "12288;;909"
+[1] "0.091;0.15;0.065;0.94"
+|============================================================================================================================================| 100%
+[1] "19897;;1323"
+[1] "0.139;0.29;0.091;0.849"
+[1] "18439;;1076"
+[1] "0.177;0.13;0.28;0.923"
+[1] "7016;;238"
+[1] "0.162;0.12;0.25;0.953"
+|====================================================================================================================================| 100%    1 MB
+[1] "4929;;328"
+[1] "0.197;0.133;0.375;0.852"
+[1] "10689;;695"
+[1] "0.191;0.15;0.263;0.858"
+[1] "18282;;1484"
+[1] "0.347;0.39;0.312;0.887"
+[1] "5912;;404"
+[1] "0.182;0.217;0.156;0.891"
+There were 50 or more warnings (use warnings() to see the first 50)
+> for (i in seq(from = 1,
++               to = length(arrayTodasBasesGitHubTarget),
++               #to = 64,
++               by = 1)) {
++   base_target = list()
++   base_source = list()
++   
++   #print(paste("target: ", arrayTodasBasesGitHub[i], sep = ""))
++   start.time <- Sys.time()
++   
++   base_target <- preparaBaseComPath(pathTargert,arrayTodasBasesGitHubTarget[i])
++   #print(paste("distribution target: ", table(base_target$BugLogical), sep = ""))
++   if (is.na(table(base_target$BugLogical)[2]) || length(base_target$BugLogical)==0) {
++     #print("BASE SEM DEFEITOS")
++   } else{
++     
++     for (j in seq(
++       from = 1,
++       to = length(arrayTodasBasesGitHubSourceNoise),
++       by = 1
++     )) {
++       if (substr(arrayTodasBasesGitHubTarget[i], 0, 3) != substr(arrayTodasBasesGitHubSourceNoise[j], 0, 3)) {
++         
++           data <- preparaBaseComPath(path,arrayTodasBasesGitHubSourceNoise[j])
++          
++           base_source <- rbind(base_source, data)
++           data = list()
++         
++         
++       }
++       
++       
++       
++     }
++     
++     base_source <- getKnnFromSource(base_targetParam = base_target ,base_sourceParam = base_source ,vizinhos = 50 )
++     
++     print(paste(table(base_source$BugLogical)[1], table(base_source$BugLogical)[2], sep = ";;"))
++     print(calculaRegressaoGitHubDataset(base_source, base_target))
++     end.time <- Sys.time()
++     time.taken <- end.time - start.time
++     #print(time.taken)
++     #print("___________________________________________________________")
++     
++   }
++   
++   
++ }
+[1] "3802;;217"
+[1] "0.37;0.294;0.5;0.827"
+[1] "12905;;916"
+[1] "0.073;0.095;0.059;0.881"
+|====================================================================================================================================| 100%    1 MB
+[1] "31578;;2067"
+[1] "0.349;0.261;0.527;0.886"
+[1] "25111;;1817"
+[1] "0.056;0.1;0.039;0.933"
+[1] "35521;;2269"
+[1] "0.146;0.3;0.096;0.852"
+[1] "35249;;2250"
+[1] "0.188;0.139;0.288;0.923"
+[1] "14899;;527"
+[1] "0.162;0.12;0.25;0.953"
+[1] "11345;;810"
+[1] "0.172;0.111;0.385;0.855"
+[1] "22632;;1483"
+[1] "0.184;0.13;0.317;0.871"
+[1] "36103;;2739"
+[1] "0.354;0.39;0.324;0.891"
+[1] "13412;;862"
+[1] "0.167;0.13;0.231;0.927"
+
+
+COM ORBoostFilter
+
+> path <- "C:\\Users\\alysson\\Dropbox\\Doutorado\\R\\Bases\\github\\GitHubBugDataSet\\processadas\\Noise_label\\ORBoostFilter\\"
+> arrayTodasBasesGitHubSourceNoise <- list.files(path = path,recursive = TRUE)
+> for (i in seq(from = 1,
++               to = length(arrayTodasBasesGitHubTarget),
++               #to = 64,
++               by = 1)) {
++   base_target = list()
++   base_source = list()
++   
++   #print(paste("target: ", arrayTodasBasesGitHub[i], sep = ""))
++   start.time <- Sys.time()
++   
++   base_target <- preparaBaseComPath(pathTargert,arrayTodasBasesGitHubTarget[i])
++   #print(paste("distribution target: ", table(base_target$BugLogical), sep = ""))
++   if (is.na(table(base_target$BugLogical)[2]) || length(base_target$BugLogical)==0) {
++     #print("BASE SEM DEFEITOS")
++   } else{
++     
++     for (j in seq(
++       from = 1,
++       to = length(arrayTodasBasesGitHubSourceNoise),
++       by = 1
++     )) {
++       if (substr(arrayTodasBasesGitHubTarget[i], 0, 3) != substr(arrayTodasBasesGitHubSourceNoise[j], 0, 3)) {
++         
++           data <- preparaBaseComPath(path,arrayTodasBasesGitHubSourceNoise[j])
++          
++           base_source <- rbind(base_source, data)
++           data = list()
++         
++         
++       }
++       
++       
++       
++     }
++     
++     base_source <- getKnnFromSource(base_targetParam = base_target ,base_sourceParam = base_source ,vizinhos = 5 )
++     
++     print(paste(table(base_source$BugLogical)[1], table(base_source$BugLogical)[2], sep = ";;"))
++     print(calculaRegressaoGitHubDataset(base_source, base_target))
++     end.time <- Sys.time()
++     time.taken <- end.time - start.time
++     #print(time.taken)
++     #print("___________________________________________________________")
++     
++   }
++   
++   
++ }
+[1] "411;;25"
+[1] "0.25;0.235;0.267;0.755"
+[1] "1499;;126"
+[1] "0.077;0.095;0.065;0.888"
+[1] "4801;;261"
+[1] "0.266;0.245;0.292;0.842"
+[1] "3514;;254"
+[1] "0.101;0.25;0.063;0.911"
+[1] "6402;;336"
+[1] "0.143;0.33;0.092;0.834"
+[1] "5355;;313"
+[1] "0.129;0.093;0.213;0.92"
+[1] "1977;;56"
+[1] "0.233;0.2;0.278;0.95"
+|============================================================================================================================================| 100%
+[1] "1286;;80"
+[1] "0.206;0.156;0.304;0.837"
+[1] "2913;;192"
+[1] "0.286;0.26;0.317;0.854"
+[1] "5106;;460"
+[1] "0.316;0.398;0.262;0.868"
+[1] "1563;;109"
+[1] "0.242;0.348;0.186;0.879"
+There were 50 or more warnings (use warnings() to see the first 50)
+> for (i in seq(from = 1,
++               to = length(arrayTodasBasesGitHubTarget),
++               #to = 64,
++               by = 1)) {
++   base_target = list()
++   base_source = list()
++   
++   #print(paste("target: ", arrayTodasBasesGitHub[i], sep = ""))
++   start.time <- Sys.time()
++   
++   base_target <- preparaBaseComPath(pathTargert,arrayTodasBasesGitHubTarget[i])
++   #print(paste("distribution target: ", table(base_target$BugLogical), sep = ""))
++   if (is.na(table(base_target$BugLogical)[2]) || length(base_target$BugLogical)==0) {
++     #print("BASE SEM DEFEITOS")
++   } else{
++     
++     for (j in seq(
++       from = 1,
++       to = length(arrayTodasBasesGitHubSourceNoise),
++       by = 1
++     )) {
++       if (substr(arrayTodasBasesGitHubTarget[i], 0, 3) != substr(arrayTodasBasesGitHubSourceNoise[j], 0, 3)) {
++         
++           data <- preparaBaseComPath(path,arrayTodasBasesGitHubSourceNoise[j])
++          
++           base_source <- rbind(base_source, data)
++           data = list()
++         
++         
++       }
++       
++       
++       
++     }
++     
++     base_source <- getKnnFromSource(base_targetParam = base_target ,base_sourceParam = base_source ,vizinhos = 10 )
++     
++     print(paste(table(base_source$BugLogical)[1], table(base_source$BugLogical)[2], sep = ";;"))
++     print(calculaRegressaoGitHubDataset(base_source, base_target))
++     end.time <- Sys.time()
++     time.taken <- end.time - start.time
++     #print(time.taken)
++     #print("___________________________________________________________")
++     
++   }
++   
++   
++ }
+[1] "825;;34"
+[1] "0.182;0.176;0.188;0.724"
+|============================================================================================================================================| 100%
+[1] "2826;;242"
+[1] "0.179;0.286;0.13;0.872"
+[1] "8587;;499"
+[1] "0.31;0.304;0.316;0.841"
+[1] "6499;;443"
+[1] "0.088;0.2;0.056;0.917"
+[1] "11294;;567"
+[1] "0.158;0.36;0.101;0.839"
+[1] "9614;;561"
+[1] "0.143;0.102;0.239;0.921"
+[1] "3668;;107"
+[1] "0.171;0.12;0.3;0.956"
+[1] "2478;;168"
+[1] "0.338;0.267;0.462;0.858"
+[1] "5473;;340"
+[1] "0.254;0.22;0.301;0.856"
+[1] "9290;;769"
+[1] "0.333;0.415;0.279;0.873"
+[1] "2998;;208"
+[1] "0.262;0.348;0.211;0.891"
+There were 50 or more warnings (use warnings() to see the first 50)
+> for (i in seq(from = 1,
++               to = length(arrayTodasBasesGitHubTarget),
++               #to = 64,
++               by = 1)) {
++   base_target = list()
++   base_source = list()
++   
++   #print(paste("target: ", arrayTodasBasesGitHub[i], sep = ""))
++   start.time <- Sys.time()
++   
++   base_target <- preparaBaseComPath(pathTargert,arrayTodasBasesGitHubTarget[i])
++   #print(paste("distribution target: ", table(base_target$BugLogical), sep = ""))
++   if (is.na(table(base_target$BugLogical)[2]) || length(base_target$BugLogical)==0) {
++     #print("BASE SEM DEFEITOS")
++   } else{
++     
++     for (j in seq(
++       from = 1,
++       to = length(arrayTodasBasesGitHubSourceNoise),
++       by = 1
++     )) {
++       if (substr(arrayTodasBasesGitHubTarget[i], 0, 3) != substr(arrayTodasBasesGitHubSourceNoise[j], 0, 3)) {
++         
++           data <- preparaBaseComPath(path,arrayTodasBasesGitHubSourceNoise[j])
++          
++           base_source <- rbind(base_source, data)
++           data = list()
++         
++         
++       }
++       
++       
++       
++     }
++     
++     base_source <- getKnnFromSource(base_targetParam = base_target ,base_sourceParam = base_source ,vizinhos = 20 )
++     
++     print(paste(table(base_source$BugLogical)[1], table(base_source$BugLogical)[2], sep = ";;"))
++     print(calculaRegressaoGitHubDataset(base_source, base_target))
++     end.time <- Sys.time()
++     time.taken <- end.time - start.time
++     #print(time.taken)
++     #print("___________________________________________________________")
++     
++   }
++   
++   
++ }
+[1] "1599;;59"
+[1] "0.308;0.235;0.444;0.816"
+[1] "5353;;438"
+[1] "0.2;0.333;0.143;0.87"
+[1] "14634;;820"
+[1] "0.299;0.277;0.325;0.847"
+[1] "11436;;747"
+[1] "0.108;0.25;0.068;0.917"
+[1] "18568;;904"
+[1] "0.17;0.38;0.109;0.844"
+[1] "16428;;949"
+[1] "0.23;0.176;0.333;0.924"
+[1] "6581;;181"
+[1] "0.114;0.08;0.2;0.953"
+[1] "4700;;347"
+[1] "0.358;0.267;0.545;0.87"
+[1] "9935;;610"
+[1] "0.181;0.17;0.193;0.828"
+[1] "16035;;1212"
+[1] "0.357;0.447;0.297;0.877"
+[1] "5651;;374"
+[1] "0.239;0.348;0.182;0.876"
+There were 50 or more warnings (use warnings() to see the first 50)
+> for (i in seq(from = 1,
++               to = length(arrayTodasBasesGitHubTarget),
++               #to = 64,
++               by = 1)) {
++   base_target = list()
++   base_source = list()
++   
++   #print(paste("target: ", arrayTodasBasesGitHub[i], sep = ""))
++   start.time <- Sys.time()
++   
++   base_target <- preparaBaseComPath(pathTargert,arrayTodasBasesGitHubTarget[i])
++   #print(paste("distribution target: ", table(base_target$BugLogical), sep = ""))
++   if (is.na(table(base_target$BugLogical)[2]) || length(base_target$BugLogical)==0) {
++     #print("BASE SEM DEFEITOS")
++   } else{
++     
++     for (j in seq(
++       from = 1,
++       to = length(arrayTodasBasesGitHubSourceNoise),
++       by = 1
++     )) {
++       if (substr(arrayTodasBasesGitHubTarget[i], 0, 3) != substr(arrayTodasBasesGitHubSourceNoise[j], 0, 3)) {
++         
++           data <- preparaBaseComPath(path,arrayTodasBasesGitHubSourceNoise[j])
++          
++           base_source <- rbind(base_source, data)
++           data = list()
++         
++         
++       }
++       
++       
++       
++     }
++     
++     base_source <- getKnnFromSource(base_targetParam = base_target ,base_sourceParam = base_source ,vizinhos = 50 )
++     
++     print(paste(table(base_source$BugLogical)[1], table(base_source$BugLogical)[2], sep = ";;"))
++     print(calculaRegressaoGitHubDataset(base_source, base_target))
++     end.time <- Sys.time()
++     time.taken <- end.time - start.time
++     #print(time.taken)
++     #print("___________________________________________________________")
++     
++   }
++   
++   
++ }
+[1] "3754;;160"
+[1] "0.273;0.176;0.6;0.837"
+[1] "11895;;866"
+[1] "0.145;0.238;0.104;0.863"
+[1] "26814;;1433"
+[1] "0.338;0.321;0.358;0.852"
+|============================================================================================================================================| 100%
+[1] "22521;;1390"
+[1] "0.078;0.15;0.053;0.929"
+[1] "31485;;1456"
+[1] "0.169;0.35;0.111;0.855"
+[1] "29480;;1649"
+[1] "0.239;0.204;0.289;0.917"
+[1] "13728;;448"
+[1] "0.167;0.12;0.273;0.954"
+|============================================================================================================================================| 100%
+[1] "10553;;789"
+[1] "0.4;0.289;0.65;0.882"
+[1] "19956;;1233"
+[1] "0.236;0.19;0.311;0.862"
+[1] "30068;;1956"
+[1] "0.34;0.423;0.284;0.874"
+[1] "12474;;758"
+[1] "0.2;0.261;0.162;0.883"
+
+
+COM RNN
+
+
+
+
